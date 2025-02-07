@@ -10,17 +10,24 @@ import {
 } from "react-native";
 import icons from "@/constants/icons";
 import images from "@/constants/images";
+import { login } from "@/lib/appwrite";
+import { Redirect } from "expo-router";
+import { useGlobalContext } from "@/lib/global-provider";
 
 type Props = {};
 
 const Signin = (props: Props) => {
+  const { refetch, loading, isLogged } = useGlobalContext();
+
+  if (!loading && isLogged) return <Redirect href="/" />;
+
   const handleLogin = async () => {
-    // const result = await login();
-    // if (result) {
-    //   refetch();
-    // } else {
-    //   Alert.alert("Error", "Failed to login");
-    // }
+    const result = await login();
+    if (result) {
+      refetch();
+    } else {
+      Alert.alert("Error", "Failed to login");
+    }
   };
 
   return (
