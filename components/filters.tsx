@@ -26,6 +26,7 @@ const Filters = () => {
       horizontal
       showsHorizontalScrollIndicator={false}
       className="mt-3 mb-2"
+      focusable
     >
       {categories.map((item, index) => (
         <TouchableOpacity
